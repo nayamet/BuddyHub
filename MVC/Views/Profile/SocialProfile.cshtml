@@ -1,0 +1,107 @@
+﻿@model BuddyHub.Models.VM.ProfileData
+
+@{
+    ViewBag.Title = "Social Profile";
+}
+
+<div class="row mt-1">
+    <div class="col-3 p-1 ">
+        <div class="dashboard-nav shadow rounded-3">
+            <nav class="dashboard-nav-list">
+                <a href="/Profile/@Model.Username" class="dashboard-nav-item"><i class="fa fa-address-card"></i> Basic Info </a>
+                <a href="/Profile/WorkProfile/@Model.Username" class="dashboard-nav-item active"><i class="fa fa-briefcase"></i> Works Profile </a>
+                <a href="/Profile/SocialProfile/@Model.Username" class="dashboard-nav-item"><i class="fa fa-twitch"></i> Social Links </a>
+                <a href="/Profile/Posts/@Model.Username" class="dashboard-nav-item"><i class="fa fa-file-archive-o"></i> My Posts </a>
+
+            </nav>
+        </div>
+    </div>
+    <div class="col-9 p-1">
+        <div class="row shadow p-3 mx-1 rounded-3">
+            <div class="col-12 d-flex justify-content-center">
+                <img class="rounded-circle border border-2 border-secondary shadow" src="@Url.Content("~/Content/Images/img_avatar.png")" style="height:100px;width:100px" />
+            </div>
+            <div class="col-12 d-flex justify-content-center align-items-center my-1">
+                <h5 class="d-inline-block">@@@Model.Username</h5>
+                <h6 class="d-inline-block">
+                    (@if (Model.Status == 1)
+                    {@Html.Raw("Active")}
+                else
+                {@Html.Raw("Disabled")})
+                </h6>
+            </div>
+            <div class="col-3 d-flex justify-content-center my-1">
+
+            </div>
+            <div class="col-6 d-flex justify-content-center my-1">
+                <div class="row shadow-sm rounded-3 d-flex justify-content-center">
+                    <div class="col-3 d-flex flex-column align-items-center me-3">
+                        <h6 class="my-0">Posts</h6>
+                        <h6 class="">@Model.Posts.Count</h6>
+                    </div>
+                    <div class="col-3 d-flex flex-column align-items-center ms-3">
+                        <h6 class="my-0">Followers</h6>
+                        <h6 class="">@Model.Followers.Count</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 d-flex justify-content-center my-1">
+                @if ((string)Session["Username"] != Model.Username.Replace(" ", ""))
+                {
+                    <a class="btn btn-outline-primary" href="/Follower/DoFollow/@Model.FK_Users_Id">Follow/Unfollow</a>
+                }
+            </div>
+            <div class="col-12 mt-4">
+                <div class="row">
+                    @if ((string)Session["Username"] == Model.Username.Replace(" ", ""))
+                    {
+                        <p>
+                            <a href="/User/AddSocialProfile" class="btn btn-primary">Add New</a>
+                        </p>
+                    }
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Social Link
+                            </th>
+                            @if ((string)Session["Username"] == Model.Username.Replace(" ", ""))
+                            {
+                                <th>
+                                    Actions
+                                </th>
+                            }
+                        </tr>
+
+                        @foreach (var item in Model.Socials)
+                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SocialName)
+                        </td>
+                        <td>
+                            <a href="@Html.DisplayFor(modelItem => item.Link)">
+                                @Html.DisplayFor(modelItem => item.Link)
+                            </a>
+                        </td>
+                        @if ((string)Session["Username"] == Model.Username.Replace(" ", ""))
+                        {
+                    <td>
+                        <a class="btn btn-sm btn-outline-danger text-decoration-none" href="\User\RemoveSocialLink\@item.Id" >Delete</a>
+
+                    </td>
+                        }
+
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

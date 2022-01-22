@@ -1,0 +1,93 @@
+﻿@model IEnumerable<BuddyHub.Models.VM.ProfileData>
+
+@{
+    ViewBag.Title = "AllUser";
+}
+
+
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-3 p-1 ">
+            <div class="dashboard-nav">
+                <nav class="dashboard-nav-list">
+                    <!-- <a th:href="" class="dashboard-nav-item"><i class="fas fa-home"></i>Home </a> -->
+                    <a href="/Admin/Index" class="dashboard-nav-item"><i class="fa fa-dashboard"></i> dashboard</a>
+                    <a href="/Admin/AllUser" class="dashboard-nav-item active"><i class="fa fa-users"></i> Users </a>
+                    <a th:classappend="${toActive=='post' ? 'active':''}" href="/Admin/AllPost" class="dashboard-nav-item"><i class="fa fa-hacker-news"></i> Posts </a>
+                    <!-- <div class='dashboard-nav-dropdown'>
+                <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
+                <div class='dashboard-nav-dropdown-menu'>
+                    <a href="#" class="dashboard-nav-dropdown-item">All</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
+                    <a href="#" class="dashboard-nav-dropdown-item">New</a>
+                </div>
+            </div> -->
+                    <a href="/Profile/@Session["Username"]" class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+                    <div class="nav-item-divider"></div>
+                    <a href="/User/Logout" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+                </nav>
+            </div>
+
+
+        </div>
+        <div class="col-9 p-1 ">
+            <!-- View of all User list -->
+            <table class="table table-striped table-hover mt-2 mx-3 w-75">
+                <tr class="table-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Username)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Type)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Status)</th>
+                    <th class="text-center" colspan=3 scope="col">Action</th>
+                </tr>
+                @*@{ int rowNo = 0; }*@
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th class="text-center" scope="row"></th>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Type)</td>
+
+                        <td class="text-center">
+                            @if (item.Status == 1)
+                            {
+                                <a class="text-success" href="/User/ChangeStatus/@item.Username" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Status">
+                                    <i class="fa fa-toggle-on"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="text-danger" href="/User/ChangeStatus/@item.Username" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Status">
+                                    <i class="fa fa-toggle-off"></i>
+                                </a>
+                            }
+
+                        </td>
+                        <td class="text-center">
+                            <a class="text-success text-decoration-none p-0 px-2 overlay" data-bs-toggle="tooltip" data-bs-placement="top" title="View" href="/Profile/@item.Username"><i class="fa fa-eye"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a class="text-danger text-decoration-none p-0 pe-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" href="/User/AdminUserRemove/@item.FK_Users_Id"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                   
+                }
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

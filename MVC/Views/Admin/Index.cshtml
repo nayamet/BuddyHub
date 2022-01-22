@@ -1,0 +1,85 @@
+﻿@model BuddyHub.Models.VM.ProfileData
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row mt-1">
+        <div class="col-3 p-1 ">
+            <div class="dashboard-nav">
+                <nav class="dashboard-nav-list">
+                    <!-- <a th:href="" class="dashboard-nav-item"><i class="fas fa-home"></i>Home </a> -->
+                    <a href="/Admin/Index" class="dashboard-nav-item active"><i class="fa fa-dashboard"></i> dashboard</a>
+                    <a th:classappend="${toActive=='user' ? 'active':''}" href="/Admin/AllUser" class="dashboard-nav-item"><i class="fa fa-users"></i> Users </a>
+                    <a th:classappend="${toActive=='post' ? 'active':''}" href="/Admin/AllPost" class="dashboard-nav-item"><i class="fa fa-hacker-news"></i> Posts </a>
+                    <!-- <div class='dashboard-nav-dropdown'>
+                        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
+                        <div class='dashboard-nav-dropdown-menu'>
+                            <a href="#" class="dashboard-nav-dropdown-item">All</a>
+                            <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
+                            <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
+                            <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
+                            <a href="#" class="dashboard-nav-dropdown-item">New</a>
+                        </div>
+                    </div> -->
+                    <a href="/Profile/@Session["Username"]" class="dashboard-nav-item"><i class="fa fa-user"></i> Profile </a>
+                    <div class="nav-item-divider"></div>
+                    <a href="/User/Logout" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+                </nav>
+            </div>
+
+
+        </div>
+        <div class="col-9 p-1 ">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-white bg-primary shadow">
+                        <div class="card-body card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <div th:text="" class="h3">@ViewBag.TotalUser</div>
+                                <div>Users</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-white bg-info shadow">
+                        <div class="card-body card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <div th:text="" class="h3">@ViewBag.TotalPost</div>
+                                <div>Posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card text-white bg-warning shadow">
+                        <div class="card-body card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <div th:text="" class="h3">@ViewBag.TotalComment</div>
+                                <div>Comments</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="col-sm-6 col-lg-3">
+                    <div class="card text-white bg-danger shadow">
+                        <div class="card-body card-body d-flex justify-content-between align-items-start">
+                            <div>
+                                <div th:text="" class="h3">9.823</div>
+                                <div>Categories</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>*@
+
+            </div>
+            
+        </div>
+    </div>
+</div>

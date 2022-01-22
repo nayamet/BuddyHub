@@ -1,0 +1,13 @@
+﻿@model BuddyHub.Models.VirtualModel.PostData
+@{
+    ViewBag.Title = "EditPost";
+}
+
+<h2>Edit Post</h2>
+<form action="/Post/EditPost/@Model.PostId" method="post" class="form-control">
+    PostsText:
+    <textarea class="form-control" name="PostText" >@Model.PostText.Trim()</textarea>
+    <hr />
+    <input type="submit" name="submit" value="Edit Post" class="btn btn-primary" />
+</form>
+

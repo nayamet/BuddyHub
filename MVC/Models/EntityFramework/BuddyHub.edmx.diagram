@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d636b8b8a6e45daae89d5da33e92e24" Name="Diagram1">
+        <EntityTypeShape EntityType="BuddyHub.Comment" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Follower" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Like" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Notification" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.PostImage" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Post" Width="1.5" PointX="3.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Profile" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.RecoveryPassword" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.Save" Width="1.5" PointX="6" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.SocialLink" Width="1.5" PointX="3" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.User" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BuddyHub.WorksProfile" Width="1.5" PointX="3" PointY="31.125" IsExpanded="true" />
+        <AssociationConnector Association="BuddyHub.FK_Comments_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Comments_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Followers_Following" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Followers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Notifications_Notifier" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Notifications_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_PostImages_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_PostImages_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Saves_post" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Profiles_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_RecoveryPasswords_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_Saves_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_SocialLinks_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BuddyHub.FK_WorksProfiles_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

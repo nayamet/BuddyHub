@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BuddyHub.Models.VM.ProfileData>
+
+@{
+    ViewBag.Title = "ShowFollowing";
+}
+
+<h2>Show Followeing</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PImage)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+        <td>
+            <a href="/Profile/ViewProfile/@item.Username" class="btn btn-success">Goto profile</a>
+        </td>    
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PImage)
+        </td>
+    
+
+</tr>
+}
+
+</table>

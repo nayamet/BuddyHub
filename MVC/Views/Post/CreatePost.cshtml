@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "CreatePost";
+}
+
+<h2>CreatePost</h2>
+
+<form action="/Post/CreatePost" method="post" class="form-control">
+    PostsText:
+    <textarea class="form-control" name="PostText" placeholder="Write something....."></textarea>
+    <hr />
+    <input type="submit" name="submit" value="Post" class="btn btn-primary"/>
+</form>

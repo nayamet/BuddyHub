@@ -1,0 +1,12 @@
+﻿@model BuddyHub.Models.VirtualModel.UserData
+@{
+    ViewBag.Title = "CheckingUsername";
+}
+
+<h2>Checking Username</h2>
+<form action="/Password/CheckingUsername" method="post">
+    Username: <input type="text" name="Username" value="@Model.Username"/>
+    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary"/>
+</form>
+

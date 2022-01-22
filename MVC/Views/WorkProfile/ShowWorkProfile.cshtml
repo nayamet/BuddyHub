@@ -1,0 +1,70 @@
+﻿@model IEnumerable<BuddyHub.Models.VirtualModel.WorkProfileData>
+
+@{
+    ViewBag.Title = "ShowWorkProfile";
+}
+
+<div class="row mt-1">
+    <div class="col-3 p-1 ">
+        <div class="dashboard-nav shadow rounded-3">
+            <nav class="dashboard-nav-list">
+                <a href="/Admin/Index" class="dashboard-nav-item"><i class="fa fa-address-card"></i> Basic Info </a>
+                <a href="/WorkProfile/ShowWorkProfile" class="dashboard-nav-item active"><i class="fa fa-briefcase"></i> Works Profile </a>
+                <a href="/Admin/AllPost" class="dashboard-nav-item"><i class="fa fa-twitch"></i> Social Links </a>
+                <a href="" class="dashboard-nav-item"><i class="fa fa-file-archive-o"></i> My Posts </a>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="col-9 p-1">
+        <p>
+            <a href="/WorkProfile/AddWorkProfile" class="btn btn-primary">Add new work profile</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Institution)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndYear)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Institution)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        <a href="/WorkProfile/EditWorkProfile/@item.Id" class="btn btn-sm btn-primary me-2">Edit</a>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+    </div>
+</div>
+
+

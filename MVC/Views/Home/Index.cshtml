@@ -1,0 +1,130 @@
+﻿@model IEnumerable<BuddyHub.Models.VirtualModel.PostData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-8">
+        <div class="row border rounded-3 shadow-sm  mb-3">
+            <div class="row align-items-center g-1 m-2">
+                <div class="col-1 text-center">
+                    <!-- Will change this picture dynamically -->
+                    <a class="text-dark" href="/Profile/@Session["Username"]">
+                        <span>
+                            <img class="rounded-circle" src="@Url.Content("~/Content/Images/user-avatar.jpg")" style="height:55px;width:55px" />
+                        </span>
+                    </a>
+                </div>
+                <div class="col-6 pe-5">
+                    <a class="text-decoration-none text-muted" href="@Url.Action("CreatePost", "Post")">
+                        <input class="form-control fs-6 my-2 py-3 rounded-3" type="text" name="postBox"
+                               id="postBox" placeholder="What you like to share ?">
+                    </a>
+                </div>
+            </div>
+        </div>
+        @*Single Post Section Start*@
+
+
+        @foreach (var item in Model)
+        {
+            <div class="row border rounded-3 mb-2 p-1 shadow-sm">
+                @*Post info section*@
+                <div class="row d-flex align-items-center mb-1">
+                    <div class="col-6 justify-content-start d-flex">
+                        <div class="me-1">
+                            <img class="rounded-circle" src="@Url.Content("~/Content/Images/user-avatar.jpg")" style="height:30px;width:30px" />
+                        </div>
+                        <a href="/Profile/@Html.DisplayFor(modelItem => item.Username)"
+                           class="fs-6 text-success me-1 text-decoration-none">@Html.DisplayFor(modelItem => item.Username)</a>
+                        <div class="font-weight-light text-danger">
+                            <time class="timeago" datetime="@Html.DisplayFor(modelItem => item.CreatedAt)"></time>
+                        </div>
+                    </div>
+                    <div class="col-6 justify-content-end d-flex">
+                        @{ var tempUser = item.Username.Replace(" ", "");}
+                        @if ((string)Session["Username"] == tempUser)
+                        {
+                            <a href="\Post\EditPost\@Html.DisplayFor(modelItem => item.PostId)" class="text-decoration-none">
+                                <i class="fa fa-edit me-2 text-success"><span class="ms-1">Edit</span></i>
+                            </a>
+                            <a href="\Post\RemovePost\@Html.DisplayFor(modelItem => item.PostId)" class="text-decoration-none">
+                                <i class="fa fa-trash me-2 text-danger"><span class="ms-1">Delete</span></i>
+                            </a>
+                        }
+                        <i class="fa fa-ellipsis-h me-1"></i>
+
+                    </div>
+                </div>
+
+                @*Main Post Section*@
+                <div class="ms-3 col-12">
+                    <a class="text-decoration-none text-black" href="@Url.Action("View", "Post", new {id=@Html.DisplayFor(modelItem => item.PostId)})">
+                        <div class="lh-sm text-dark text-wrap">
+                            @Html.DisplayFor(modelItem => item.PostText)
+                        </div>
+                    </a>
+                </div>
+
+                <div class="row border-top mt-2 py-1 d-flex align-items-center">
+                    <div class="col-6 justify-content-start d-flex">
+                        <a href="/Post/LikeOnPost/@Session["Username"]/@Html.DisplayFor(modelItem => item.PostId)" class="btn btn-outline-primary px-2 py-0">@Html.DisplayFor(modelItem => item.Likes.Count) Likes<i class="fa fa-thumbs-o-up px-1 m-0"></i></a>
+                        <a href="@Url.Action("View", "Post", new {id=@Html.DisplayFor(modelItem => item.PostId)})" class="btn btn-outline-primary px-2 py-0 ms-2">@Html.DisplayFor(modelItem => item.Comments.Count) Comments<i class="fa fa-comment px-1 m-0"></i></a>
+                    </div>
+                    <div class="col-6 justify-content-end d-flex">
+                        <a href="/Save/CheckPost/@item.PostId"><div class="mx-2"><i class="fa fa-heart me-1"></i></div></a>
+                        <div class="mx-2"><i class="fa fa-share me-1"></i></div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+        @*Single Post Section End*@
+    </div>
+
+    <div class="col-4">
+ <div class="row border rounded-3 mb-2 ms-2 p-1 shadow-sm">
+            @*<a href="/Save/ShowSavePost" class="btn btn-primary">Save posts</a>*@
+
+     <div class="dashboard-nav bg-secondary rounded-3">
+         <nav class="dashboard-nav-list">
+             <!-- <a th:href="" class="dashboard-nav-item"><i class="fas fa-home"></i>Home </a> -->
+             @if ((String)Session["Type"] == "admin")
+             {
+                 <a href="/Admin/Index" class="dashboard-nav-item"><i class="fa fa-dashboard"></i> Goto Admin Panel</a>
+
+             }
+             <a href="/Profile/@Session["Username"]" class="dashboard-nav-item"><i class="fa fa-user-circle"></i> My Profile</a>
+             <a th:classappend="${toActive=='user' ? 'active':''}" href="/Follower/ShowFollowers" class="dashboard-nav-item"><i class="fa fa-users"></i> Followers </a>
+             <a th:classappend="${toActive=='user' ? 'active':''}" href="/Follower/ShowFollowing" class="dashboard-nav-item"><i class="fa fa-user"></i> Following </a>
+
+             <a href="/Save/ShowSavePost" class="dashboard-nav-item"><i class="fa fa-heartbeat"></i> Favourite Post </a>
+             <!-- <div class='dashboard-nav-dropdown'>
+        <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
+        <div class='dashboard-nav-dropdown-menu'>
+            <a href="#" class="dashboard-nav-dropdown-item">All</a>
+            <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
+            <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
+            <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
+            <a href="#" class="dashboard-nav-dropdown-item">New</a>
+        </div>
+    </div> -->
+
+             <a href="/post/MyPost" class="dashboard-nav-item"><i class="fa fa-book"></i> My Posts </a>
+             <a href="/Password/CheckingChangingPassword" class="dashboard-nav-item"><i class="fa fa-key"></i> Change Password </a>
+             <a href="/Password/SetRecoveryPassword" class="dashboard-nav-item"><i class="fa fa-clock-o"></i> Recovery Password </a>
+
+             <div class="nav-item-divider"></div>
+             <a href="/User/Logout" class="dashboard-nav-item"><i class="fa fa-sign-out"></i> Logout </a>
+         </nav>
+     </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,85 @@
+﻿
+
+<nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container d-flex flex-nowrap shadow-sm" style="height:50px">
+        <div class="row w-100 align-items-center">
+            <div class="col-4 d-flex justify-content-start">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="text-decoration-none text-secondary" href="/Home/Index">
+                        <img class="img-fluid img-responsive"
+                             src="@Url.Content("~/Content/Images/logo.png")" width="70" height="50">
+                        <h5 class="d-inline-block ms-1 font-monospace">
+                            BuddyHub
+                        </h5>
+                    </a>
+                }
+
+
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                @if (User.Identity.IsAuthenticated)
+                {
+
+
+                    <form action="/Home/Search">
+                        <div class="row">
+                            <div class="col-10">
+                                <input type="text" name="SearchText" class="form-control d-inline-block rounded-3"
+                                       placeholder="Search On BuddyHub">
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" class="d-inline-block btn btn-sm btn-primary rounded-3">Search</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                }
+                else
+                {
+                    <a class="text-decoration-none text-secondary" href="/Home/Index">
+                        <img class="img-fluid img-responsive"
+                             src="@Url.Content("~/Content/Images/logo.png")" width="70" height="50">
+                        <h5 class="d-inline-block ms-1 font-monospace">
+                            ByddyHub
+                        </h5>
+                    </a>
+                }
+
+            </div>
+            <div class="col-4 d-flex justify-content-end">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="row w-100 align-items-center flex-nowrap">
+
+                        <div class="col-8">
+                            <a href="/Profile/@Session["Username"]" class="text-black text-decoration-none">
+                                <div class="d-flex align-items-center">
+                                    <span>
+                                        <img class="rounded-circle" src="@Url.Content("~/Content/Images/user-avatar.jpg")" style="height:40px;width:40px" />
+                                    </span>
+                                    <div class="ms-2">
+                                        <h6>@Session["Name"]</h6>
+                                    </div>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-4 d-flex justify-content-end">
+                            <a href="/Notification/Index/@Session["UserId"]" class="btn btn-sm btn-outline-primary rounded-circle shadow-sm mx-1"><span class="fa fa-bell"></span></a>
+                            <button class="btn btn-sm btn-outline-warning rounded-circle shadow-sm mx-1"><span class="fa fa-envelope"></span></button>
+                            <a href="/User/Logout" class="btn btn-sm btn-outline-success rounded-circle shadow-sm mx-1"><span class="fa fa-sign-out"></span></a>
+
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</nav>

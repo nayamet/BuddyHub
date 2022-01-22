@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BuddyHub</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .profile {
+            font-size: larger;
+            color: dimgray;
+            font-weight: bold;
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        .profile1 {
+            
+            color: dimgray;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("_NavBar")
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/bootstrap")
+   
+    @RenderSection("scripts", required: false)
+    <script>
+        jQuery(document).ready(function () {
+            jQuery("time.timeago").timeago();
+        });
+    </script>
+</body>
+</html>

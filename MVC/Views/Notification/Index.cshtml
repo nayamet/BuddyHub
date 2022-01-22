@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BuddyHub.Models.VirtualModel.NotificationData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Notification</h2>
+
+
+@if (!Model.Any())
+{
+    <h6 class="ms-4">No Notification</h6>
+}
+
+<div class="row d-flex justify-content-center w-100">
+    <div class="col-7 mt-2 pt-2 pb-0 border shadow rounded-3 align-items-center">
+        @foreach (var item in Model)
+        {
+
+
+            <h6>
+                <a class="text-decoration-none text-success" href="Profile/@Html.DisplayFor(modelItem => item.FK_Notifier_Username)"> @Html.DisplayFor(modelItem => item.FK_Notifier_Name) </a>
+                <a class="text-decoration-none text-primary" href="@Html.DisplayFor(modelItem => item.GotoLink)"> @Html.DisplayFor(modelItem => item.Message) </a> at  @Html.DisplayFor(modelItem => item.CreatedAt)
+            </h6>
+            <hr />
+
+
+        }
+
+    </div>
+</div>
+
+
+
